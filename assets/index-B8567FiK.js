@@ -168,7 +168,7 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
         </section>
 
         <!-- Resources -->
-        <section id="resources" class="max-w-[1200px] mx-auto px-8 pb-32">
+        <section id="resources" class="max-w-[1200px] mx-auto px-8 pb-32 mt-40">
           <div class="text-center mb-16">
             <h2 class="text-4xl font-bold mb-4">Additional Resources</h2>
             <p class="text-slate-500 text-lg max-w-2xl mx-auto">Explore the deep research and foundational patterns that define modern agentic workflows.</p>
