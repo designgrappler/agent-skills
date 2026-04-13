@@ -181,8 +181,8 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
             </a>
             <a href="https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/" target="_blank" class="bg-white rounded-[2rem] p-10 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow" style="height: 160px !important; padding: 32px !important;">
               <h3 class="text-xl font-bold mb-4">Agentic Workflows</h3>
-              <p class="text-slate-500 text-sm mb-10 flex-grow" style="margin-bottom: 0px !important; height: 40px !important;">Andrew Ng's vision for why agents are the next major AI leap.</p>
-              <span class="text-[11px] font-bold text-indigo-500 uppercase tracking-widest hover:text-indigo-700 mt-auto transition-colors" style="margin-top: 20px;">Explore Patterns</span>
+              <p class="text-slate-500 text-sm mb-10 flex-grow" style="margin-bottom: 0px !important; height: 40px !important;">Andrew Ng's <i>Agentic Design Patterns Part 5, Multi-Agent Collaboration</i></p>
+              <span class="text-[11px] font-bold text-indigo-500 uppercase tracking-widest hover:text-indigo-700 mt-auto transition-colors" style="margin-top: 20px;">Read Article</span>
             </a>
           </div>
         </section>
