@@ -1,0 +1,142 @@
+[
+  {
+    "id": "conductor-setup",
+    "title": "Conductor Setup",
+    "category": "Orchestration",
+    "type": "Skill",
+    "description": "The \"Master Controller\" of the AgentOS. Central governing logic for task orchestration & specialist alignment. [Dev blog reference](https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/)",
+    "content": "# Skill: Conductor Setup\n## Category: Orchestration\n## Type: Skill\n\n## Description\nThe \"Master Controller\" of the AgentOS. Central governing logic for task orchestration & specialist alignment. [Dev blog reference](https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/)\n\n## Rules:\n- **Env**: Check/Install Conductor extension/tooling.\n- **Discovery**: Auto-build project baseline (stack, linting, structure).\n- **Rules**: Deploy `handoff-protocol.md` & `persona.md` to `.agent/rules/`.\n- **Sentinel**: Every rule must contain forced \"Zero-Hallucination\" header (Org Chart only).\n- **Identity**: Pre-flight grounding; Agent confirms [Role] + [Orchestrator Name].\n- **Red Flag**: Mandatory RFA (3 Fails, Risk Matrix, Premortem, Pivots) before specialists.\n- **Audit**: Architect verifies specialist domain against `team.md` before task assignment.\n- **GC**: Auto-ignore non-essential paths (`node_modules`, `build`, `dist`).\n\n### Stats:\n- Overhead: ~150T | Latency: Low | Benefit: Coherent context | Risk: Potential orchestration lag.\n\n## Trigger:\nTell Architect: \"Initialize project with Conductor orchestration.\"\n",
+    "abbr": "Cs",
+    "image": "images/conductor.png",
+    "links": [
+      {
+        "label": "READ A BLOG POST",
+        "url": "https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/"
+      },
+      {
+        "label": "EXPLORE PATTERNS",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "context-gc",
+    "title": "Context Cleaner",
+    "category": "Foundation",
+    "type": "Skill",
+    "description": "The \"System Cleaner\" of the AgentOS. Identifies & archives stale context/logs to prevent token bloat & context poisoning.",
+    "content": "# Skill: Context Cleaner\n## Category: Foundation\n## Type: Skill\n\n## Description\nThe \"System Cleaner\" of the AgentOS. Identifies & archives stale context/logs to prevent token bloat & context poisoning.\n\n## Rules:\n- **Scan**: Audit `.agent/` coordination files every 5 turns for staleness.\n- **Archive**: Move unreferenced files (10+ turns) to `.agent/archive/`.\n- **Rotate**: Summarize & rotate `activity.log` if >5000 tokens.\n\n### Stats:\n- Overhead: ~100T | Latency: 5-10s | Benefit: Pure focus; zero historical noise | Risk: Premature archiving of intermittent logic.\n\n## Trigger:\nTell Architect: \"Run a context garbage collection.\"\n",
+    "abbr": "Cc",
+    "image": "images/clean.png",
+    "links": [
+      {
+        "label": "VIEW LOGIC",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "design-sync",
+    "title": "Design Sync (Stitch)",
+    "category": "Quality",
+    "type": "Interactive",
+    "description": "The \"Visual Graphics Driver\" of the AgentOS. Syncs UI code with **Stitch** Design DNA to enforce pixel-perfection via automated browser auditing.",
+    "content": "# Skill: Design Sync (Stitch)\n## Category: Quality\n## Type: Interactive\n\n## Description\nThe \"Visual Graphics Driver\" of the AgentOS. Syncs UI code with **Stitch** Design DNA to enforce pixel-perfection via automated browser auditing.\n\n## Rules:\n- **Ground**: Verify UI role (e.g., Max). Fetch tokens/screens via `stitch.get_screen_details`.\n- **Pre-flight**: Update `/CONVENTIONS.md` with active Design DNA (colors/spacing).\n- **Verify**: Capture local UI via Browser Subagent; compare vs Stitch source.\n- **Audit**: Check hex codes/layout alignment. Report \"Design Drift\" if mismatches found.\n\n### Stats:\n- Overhead: ~400T | Latency: High (Browser cost) | Benefit: Eliminates \"As-Designed\" drift | Risk: Token-intensive verification loops.\n\n## Trigger:\nTell Architect: \"Verify UI against Stitch design.\"\n",
+    "abbr": "Ds",
+    "image": "images/placeholder.png",
+    "links": [
+      {
+        "label": "READ SETUP",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "handoff-optimizer",
+    "title": "Handoff Optimizer",
+    "category": "Foundation",
+    "type": "Skill",
+    "description": "The \"Data Bus\" of the AgentOS. Streamlines context transition between models to prevent amnesia, save tokens, and maintain momentum.",
+    "content": "# Skill: Handoff Optimizer\n## Category: Foundation\n## Type: Skill\n\n## Description\nThe \"Data Bus\" of the AgentOS. Streamlines context transition between models to prevent amnesia, save tokens, and maintain momentum.\n\n## Rules:\n- **Synth**: Pre-flight summary of state, branch, and breaking-changes.\n- **Contract**: Force 'API Contract' (Strict Input/Output) in every specialist prompt.\n- **Handshake**: Receiver MUST confirm [Role Name] + verify dependency logic (e.g., FE audits BE API).\n- **Template**: Generate structured `HANDOFF.md` in `.agent/handoffs/` for quality audit.\n- **Verify**: Conduct post-task validation against `plan.md` before turn closure.\n\n### Stats:\n- Overhead: ~300-800T | Latency: 5-10s (Synth) | Benefit: Zero-breakage transitions | Risk: Potential loss of edge-case detail.\n\n## Trigger:\nTell Architect: \"Prepare handoff for [Specialist Name].\"\n",
+    "abbr": "Ho",
+    "image": "images/handoff.png",
+    "links": [
+      {
+        "label": "READ SPECS",
+        "url": "#"
+      },
+      {
+        "label": "VIEW LOGS",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "memory-indexer",
+    "title": "Memory Indexer",
+    "category": "Foundation",
+    "type": "Skill",
+    "description": "The \"Persistent Cache\" of the AgentOS. Distills tribal knowledge & user preferences into `MEMORIES.md` to ensure cross-session continuity.",
+    "content": "# Skill: Memory Indexer\n## Category: Foundation\n## Type: Skill\n\n## Description\nThe \"Persistent Cache\" of the AgentOS. Distills tribal knowledge & user preferences into `MEMORIES.md` to ensure cross-session continuity.\n\n## Rules:\n- **Distill**: Append \"Memory Hooks\" to `MEMORIES.md` after major decisions/corrections.\n- **Boot**: Mandatory read of memory index during session initialization.\n- **Optimize**: De-duplicate and prune periodically for high signal-to-noise.\n\n### Stats:\n- Overhead: ~100-300T | Latency: Zero | Benefit: Zero-repeat error rate | Risk: Stale logic constraints.\n\n## Trigger:\nTell Architect: \"Index recent decisions to memory.\"\n",
+    "abbr": "Mi",
+    "image": "images/memory.png",
+    "links": [
+      {
+        "label": "READ DOCS",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "security-audit",
+    "title": "Security Audit",
+    "category": "Quality",
+    "type": "Hook",
+    "description": "The \"Kernel Guard\" of the AgentOS. Automated security sweeps for code changes to prevent logic regressions & vulnerabilities.",
+    "content": "# Skill: Security Audit\n## Category: Quality\n## Type: Hook\n\n## Description\nThe \"Kernel Guard\" of the AgentOS. Automated security sweeps for code changes to prevent logic regressions & vulnerabilities.\n\n## Rules:\n- **Trigger**: Execute `/audit-security` tailored to project baseline.\n- **Audit**: Verify specialist compliance (BE/DB/API) before plan reintegration.\n- **Report**: Log potential risks to `.agent/security_brief.md`.\n- **Standard**: Cross-ref new code vs `api-standards.md` in `.agent/rules/`.\n\n### Stats:\n- Overhead: ~500-1000T | Latency: 15-30s | Benefit: Catches pre-CI vulnerabilities | Risk: False positives in unconventional code.\n\n## Trigger:\nTell Architect: \"Perform security review on backend changes.\"\n",
+    "abbr": "Sa",
+    "image": "images/security.png",
+    "links": [
+      {
+        "label": "VIEW CHECKLIST",
+        "url": "#"
+      },
+      {
+        "label": "VIEW TEMPLATE",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "starter-bundle",
+    "title": "Conductor Suite (Bundle)",
+    "category": "Bundles",
+    "type": "Interactive",
+    "description": "The \"OS Setup Wizard\" of the AgentOS. Deploys the core hierarchy (Conductor, Team, Handoff) for multi-agent collaboration.",
+    "content": "# Skill: Conductor Suite (Bundle)\n## Category: Bundles\n## Type: Interactive\n\n## Description\nThe \"OS Setup Wizard\" of the AgentOS. Deploys the core hierarchy (Conductor, Team, Handoff) for multi-agent collaboration.\n\n## Rules:\n- **Init**: Check presence of Conductor/Team/Handoff foundation.\n- **Sequence**: \n    1. `conductor-setup`: establish project baseline.\n    2. `team-setup`: define specialist personas.\n    3. `handoff-optimizer`: register default transition protocol.\n\n### Stats:\n- Overhead: ~1000T (Initial) | Latency: 3-5m (Set-up interview) | Benefit: Instant professional grade AgentOS | Risk: Over-orchestration for simple scripts.\n\n## Trigger:\nTell Architect: \"Deploy the Conductor OS bundle.\"\n",
+    "abbr": "Cs",
+    "image": "images/bundle.png",
+    "links": [
+      {
+        "label": "READ GUIDE",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "team-setup",
+    "title": "Team Setup",
+    "category": "Orchestration",
+    "type": "Skill",
+    "description": "The \"Process Scheduler\" of the AgentOS. Establishes multi-agent architecture via specialized personas & rigid handoff protocols.",
+    "content": "# Skill: Team Setup\n## Category: Orchestration\n## Type: Skill\n\n## Description\nThe \"Process Scheduler\" of the AgentOS. Establishes multi-agent architecture via specialized personas & rigid handoff protocols.\n\n## Rules:\n- **Interview**: Prompt user for Tier 1 (Architect/Context), Tier 2 (Specialists/Domains), Tier 3 (Critic/QA).\n- **Quirks**: Prompt for personality/accents. **Sentinel**: Peaches monitors & kills traits that bloat tokens or degrade efficiency.\n- **Identity**: Strict verification vs ORG CHART. Pause session on identity drift (e.g., hallucinated names).\n- **Peaches**: Architect = \"Operational Health Officer\". Responsible for GC/Identity/Protocol enforcement every turn.\n- **Hierarchy**: Generate `team.md` mapping roles to specific domains/accountability.\n- **Zero-Code**: Architects manage Context/Plan only; strictly forbidden from writing code.\n\n### Stats:\n- Overhead: Low | Latency: 1-2m (Interview) | Benefit: Eliminates \"Jack-of-all-trades\" drift | Risk: Overkill for single-file scripts.\n\n## Trigger:\nTell Architect: \"Set up our Conductor Team.\"\n",
+    "abbr": "Ts",
+    "image": "images/placeholder.png",
+    "links": [
+      {
+        "label": "Source",
+        "url": "#"
+      }
+    ]
+  }
+]
