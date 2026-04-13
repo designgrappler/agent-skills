@@ -146,7 +146,7 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
                   
                   <div class="relative z-10 w-[66px] h-[77px] transform group-hover:scale-110 transition-transform duration-500 drop-shadow-lg">
                     <svg viewBox="0 0 86.6 100" class="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
-                      <path d="M43.3,6 L76,21 Q86.6,25 86.6,35 L86.6,65 Q86.6,75 76,79 L43.3,94 Q33,100 23,94 L10,79 Q0,75 0,65 L0,35 Q0,25 10,21 L33,6 Q43.3,0 43.3,6 Z" fill="#020617" stroke="${o}" stroke-width="4" stroke-linejoin="round" />
+                      <path d="M43.3,3.5 L83.1,26.5 C84.3,27.2 85.1,28.5 85.1,30 L85.1,70 C85.1,71.5 84.3,72.8 83.1,73.5 L43.3,96.5 C42.1,97.2 41.2,97.2 40,96.5 L3.5,73.5 C2.3,72.8 1.5,71.5 1.5,70 L1.5,30 C1.5,28.5 2.3,27.2 3.5,26.5 L43.3,3.5 Z" fill="#020617" stroke="${o}" stroke-width="4" stroke-linejoin="round" />
                       <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Inter, sans-serif" font-weight="bold" font-size="26" letter-spacing="-1" fill="${o}" dy="1.5">
                         ${e.abbr||`Sk`}
                       </text>
