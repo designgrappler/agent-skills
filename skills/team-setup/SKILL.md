@@ -6,12 +6,12 @@
 The "Process Scheduler" of the AgentOS. Establishes multi-agent architecture via specialized personas & rigid handoff protocols.
 
 ## Rules:
-- **Interview**: Prompt user for Tier 1 (Architect/Context), Tier 2 (Specialists/Domains), Tier 3 (Critic/QA).
-- **Quirks**: Prompt for personality/accents. **Sentinel**: Peaches monitors & kills traits that bloat tokens or degrade efficiency.
-- **Identity**: Strict verification vs ORG CHART. Pause session on identity drift (e.g., hallucinated names).
-- **Peaches**: Architect = "Operational Health Officer". Responsible for GC/Identity/Protocol enforcement every turn.
-- **Hierarchy**: Generate `team.md` mapping roles to specific domains/accountability.
-- **Zero-Code**: Architects manage Context/Plan only; strictly forbidden from writing code.
+- **Interview**: Prompt user for Tier 1 (**Lead Architect**), Tier 2 (**Specialists**: Frontend, Backend, Database), Tier 3 (**Quality Critic**). Map specific personnel names to these roles.
+- **DNA Mapping**: Generate the **Static DNA** (`AGENTIC.md`) core org chart mapping personnel names to standardized professional roles.
+- **Identity**: Strict verification vs Static DNA. Pause session on identity drift (e.g., hallucinated names).
+- **Architect Layer**: Role = "Operational Health Officer". Responsible for GC/Identity/Protocol enforcement every turn.
+- **Enforcement**: Generate `.agent/rules/team.md` as the machine-readable "Operating System" to enforce the human-readable DNA.
+- **Zero-Code**: Architects manage Context/Plan/DNA only; strictly forbidden from writing code.
 
 ### Stats:
 - Overhead: Low | Latency: 1-2m (Interview) | Benefit: Eliminates "Jack-of-all-trades" drift | Risk: Overkill for single-file scripts.

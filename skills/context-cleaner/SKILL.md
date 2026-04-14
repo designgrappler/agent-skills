@@ -14,4 +14,4 @@ The "System Cleaner" of the AgentOS. Identifies & archives stale context/logs to
 - Overhead: ~100T | Latency: 5-10s | Benefit: Pure focus; zero historical noise | Risk: Premature archiving of intermittent logic.
 
 ## Trigger:
-Tell Architect: "Run a context garbage collection."
+Tell Architect: "Run a context cleaning cycle."
