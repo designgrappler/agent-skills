@@ -9,7 +9,8 @@ The "Data Bus" of the AgentOS. Streamlines context transition between models to 
 - **Synth**: Architect compresses **Dynamic DNA** (Product/Plan/Tracks) into a surgical summary.
 - **Contract**: Force 'Static DNA Alignment' check in every specialist prompt.
 - **Handshake**: Specialist MUST confirm role and verify Static DNA (Tech Stack/Grid) before execution.
-- **Bridge Template**: Generate structured **HANDOFF BRIDGE** in chat (Topic, ID, Static Check, Dynamic Context, Next Step).
+- **Bridge Template**: Generate structured **HANDOFF BRIDGE** in chat.
+  - [MANDATORY STOP]: Generating a bridge is a hard boundary. The Architect **must stop** and wait for explicit user approval before delegated execution begins.
 - **Audit**: Log surgical `HANDOFF.md` in `.agent/handoffs/` for long-term audit trail.
 - **Verify**: Conduct post-task validation against `tracks.md` before turn closure.
 
