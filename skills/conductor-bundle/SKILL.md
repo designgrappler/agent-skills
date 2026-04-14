@@ -1,4 +1,4 @@
-# Skill: Conductor Suite (Bundle)
+# Skill: Conductor Bundle
 ## Category: Bundles
 ## Type: Interactive
 

@@ -20,11 +20,14 @@ Each skill in this repository follows a strict architecture for maximum portabil
 
 | Abbr | Skill Name | Description |
 |:---|:---|:---|
+| **Cs** | **Conductor Setup** | The "Master Controller" that orchestrates task alignment and project DNA. |
+| **Ts** | **Team Setup** | Establishes multi-agent architecture via specialized personas. |
 | **Cc** | **Context Cleaner** | Tactically manages token bloat and context pruning. |
 | **Mi** | **Memory Indexer** | Structured archival and retrieval strategies for long-term state. |
 | **Ho** | **Handoff Optimizer** | Ensures seamless transition of intent and metadata between specialized agents. |
 | **Sa** | **Security Audit** | Automated validation of agent-generated code against security baselines. |
 | **Ds** | **Design Sync** | Bridges the gap between frontend implementation and design system tokens. |
+| **Cb** | **Conductor Bundle** | A complete "OS Setup Wizard" that deploys the core Conductor hierarchy. |
 
 ---
 

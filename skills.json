@@ -1,5 +1,21 @@
 [
   {
+    "id": "conductor-bundle",
+    "title": "Conductor Bundle",
+    "category": "Bundles",
+    "type": "Interactive",
+    "description": "The \"OS Setup Wizard\" of the AgentOS. Deploys the core hierarchy (Conductor, Team, Handoff) for multi-agent collaboration.",
+    "content": "# Skill: Conductor Bundle\n## Category: Bundles\n## Type: Interactive\n\n## Description\nThe \"OS Setup Wizard\" of the AgentOS. Deploys the core hierarchy (Conductor, Team, Handoff) for multi-agent collaboration.\n\n## Rules:\n- **Init**: Check presence of Conductor/Team/Handoff foundation.\n- **Sequence**: \n    1. `conductor-setup`: establish project baseline.\n    2. `team-setup`: define specialist personas.\n    3. `handoff-optimizer`: register default transition protocol.\n\n### Stats:\n- Overhead: ~1000T (Initial) | Latency: 3-5m (Set-up interview) | Benefit: Instant professional grade AgentOS | Risk: Over-orchestration for simple scripts.\n\n## Trigger:\nTell Architect: \"Deploy the Conductor OS bundle.\"\n",
+    "abbr": "Cb",
+    "image": "images/bundle.png",
+    "links": [
+      {
+        "label": "READ GUIDE",
+        "url": "#"
+      }
+    ]
+  },
+  {
     "id": "conductor-setup",
     "title": "Conductor Setup",
     "category": "Orchestration",
@@ -103,22 +119,6 @@
       },
       {
         "label": "VIEW TEMPLATE",
-        "url": "#"
-      }
-    ]
-  },
-  {
-    "id": "starter-bundle",
-    "title": "Conductor Suite (Bundle)",
-    "category": "Bundles",
-    "type": "Interactive",
-    "description": "The \"OS Setup Wizard\" of the AgentOS. Deploys the core hierarchy (Conductor, Team, Handoff) for multi-agent collaboration.",
-    "content": "# Skill: Conductor Suite (Bundle)\n## Category: Bundles\n## Type: Interactive\n\n## Description\nThe \"OS Setup Wizard\" of the AgentOS. Deploys the core hierarchy (Conductor, Team, Handoff) for multi-agent collaboration.\n\n## Rules:\n- **Init**: Check presence of Conductor/Team/Handoff foundation.\n- **Sequence**: \n    1. `conductor-setup`: establish project baseline.\n    2. `team-setup`: define specialist personas.\n    3. `handoff-optimizer`: register default transition protocol.\n\n### Stats:\n- Overhead: ~1000T (Initial) | Latency: 3-5m (Set-up interview) | Benefit: Instant professional grade AgentOS | Risk: Over-orchestration for simple scripts.\n\n## Trigger:\nTell Architect: \"Deploy the Conductor OS bundle.\"\n",
-    "abbr": "Cs",
-    "image": "images/bundle.png",
-    "links": [
-      {
-        "label": "READ GUIDE",
         "url": "#"
       }
     ]
