@@ -100,11 +100,11 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
         <!-- Hero -->
         <section class="pt-16 pb-12 text-center">
           <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            Run your own
+            Build a more rigorous
             <div>Agent <span class="text-indigo-600">Operating System</span></div>
           </h1>
-          <p class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            Govern how your agents think, collaborate, and audit themselves.
+          <p class="text-xl text-slate-500 max-w-4xl mx-auto leading-relaxed">
+            An agent orchestration process for ensuring multi-agent reliability and performance, <br class="hidden md:block"> inspired by Google Conductor.
           </p>
         </section>
 
@@ -113,9 +113,13 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
           <div class="bg-white rounded-[2rem] shadow-sm p-12 flex flex-col md:flex-row gap-16">
             <div class="flex-1">
               <h2 class="text-2xl font-bold mb-6">Why is agent orchestration important?</h2>
-              <p class="text-lg text-slate-500 leading-relaxed">
+              <p class="text-lg text-slate-500 leading-relaxed mb-6">
                 Unlike tool integrations, your <span class="text-slate-900 font-semibold">Agent OS</span> is the architectural layer that sits between your tools and your goals. It prevents specialist amnesia, enforces safety standards, and ensures that multiple agents can work as a unified team without handoff friction.
               </p>
+              <a href="https://github.com/designgrappler/agent-skills/blob/main/GUIDE.md" target="_blank" class="inline-flex items-center gap-2 text-indigo-600 font-bold text-sm hover:underline">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                Read the Implementation Guide
+              </a>
             </div>
             <div class="w-full md:w-[420px] bg-slate-50 rounded-3xl p-8">
               <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Skill Execution Modes</h4>

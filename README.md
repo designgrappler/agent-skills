@@ -8,6 +8,11 @@ This library is more than a set of prompts; it is a **Technical System Specifica
 - **[Product Strategy](./product.md)**: The "Team" metaphor and reliability-first vision.
 - **[Technical Spec](./techstack.md)**: Requirements for Middleware Isolation and Capability Bundles.
 - **[Team Hierarchy](./team.md)**: The 3-Tier operational model (Orchestration, Strategic, Tactical).
+- **[Implementation Guide](./GUIDE.md)**: How to integrate the Conductor OS into your workspace.
+
+## 🎨 Knowledge Graph & Gallery
+The full library of skills is available in a vibrant, searchable dashboard.
+**[View the Live Skill Gallery →](https://designgrappler.github.io/agent-skills/)**
 
 ## 🚀 Key Architectural Pillars
 1.  **Middleware Isolation**: Professional-grade role discipline via hardware-level tool filtering.
