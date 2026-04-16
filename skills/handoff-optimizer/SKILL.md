@@ -1,21 +1,34 @@
+---
+Abbreviation: Ho
+Category: Orchestration
+Type: Tier 2
+Bundle: ARCHITECT
+Capabilities: [fs_read, fs_write]
+---
+
 # Skill: Handoff Optimizer
-## Category: Foundation
-## Type: Skill
 
 ## Description
-The "Data Bus" of the AgentOS. Streamlines context transition between models to prevent amnesia, save tokens, and maintain momentum.
+The "Intent Link" of the Agent OS. This skill ensures the seamless transition of strategy, metadata, and state between different specialized agents to prevent "context rot" and misaligned execution.
 
-## Rules:
-- **Synth**: Architect compresses **Dynamic DNA** (Product/Plan/Tracks) into a surgical summary.
-- **Contract**: Force 'Static DNA Alignment' check in every specialist prompt.
-- **Handshake**: Specialist MUST confirm role and verify Static DNA (Tech Stack/Grid) before execution.
-- **Bridge Template**: Generate structured **HANDOFF BRIDGE** in chat.
-  - [MANDATORY STOP]: Generating a bridge is a hard boundary. The Architect **must stop** and wait for explicit user approval before delegated execution begins.
-- **Audit**: Log surgical `HANDOFF.md` in `.agent/handoffs/` for long-term audit trail.
-- **Verify**: Conduct post-task validation against `tracks.md` before turn closure.
+## Operational Rules
+- **Role Intro**: Start by introducing yourself: *"I am the Handoff Optimizer. Let's ensure a lossless transition between roles."* [Purple Banner]
+- **Summary of Intent**: Before every handoff, generate a condensed brief that collates the previous agent's reasoning into a "Master Plan."
+- **Manual Protocol**: Default to **Phase 1: Manual Hand-off**. Present the Brief and Next Steps to the User for approval before flagging the next specialist.
+- **DNA Continuity**: Ensure the `AGENTIC.md` (Static DNA) and `tracks.md` (Dynamic DNA) are updated with the latest status before the current persona is decommissioned.
+- **The "Pre-Flight" Check**: Require the receiving agent to confirm receipt of the "Summary of Intent" before they are permitted to run tactical tools (Level 3).
+- **Advanced Mode**: Only trigger **Automated Relay** if the user explicitly enables "Opt-in Automation" in the Static DNA.
 
-### Stats:
-- Overhead: ~300-800T | Latency: 5-10s (Synth) | Benefit: Zero-breakage transitions | Risk: Potential loss of edge-case detail.
+## Verification (How to test if this skill is working)
+1. **The Brief Audit**: Verify that the agent generated a "Summary of Intent" before attempting to switch personas.
+2. **File Check**: Inspect `tracks.md` to ensure the "Next Steps" have been documented before the turn ends.
+3. **Receipt Check**: Ensure that when the new specialist joins, their first message acknowledges the summary from the previous turn.
+4. **Behavior Check**: If the system automatically switches roles without your approval (and you haven't enabled Automation), it has failed its "Manual First" protocol.
 
-## Trigger:
-Tell Architect: "Prepare handoff for [Specialist Name]."
+## Stats
+- **Overhead**: Medium (Requires summarization logic)
+- **Operational Level**: Level 2 (Strategic Planning)
+- **Benefit**: Prevents state loss and reduces "hallucinated pivots" during role transitions.
+
+## Trigger
+Tell Architect: "Optimize the handoff for the next specialist."

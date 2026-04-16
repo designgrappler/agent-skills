@@ -1,18 +1,34 @@
-# Skill: Design Sync (Stitch)
-## Category: Quality
-## Type: Interactive
+---
+Abbreviation: Ds
+Category: Design
+Type: Tier 3
+Bundle: SPECIALIST
+Capabilities: [fs_read, fs_write, mcp_StitchMCP_apply_design_system]
+---
+
+# Skill: Design Sync
 
 ## Description
-The "Visual Graphics Driver" of the AgentOS. Syncs UI code with **Stitch** Design DNA to enforce pixel-perfection via automated browser auditing.
+The "Aesthetic Guard" of the Agent OS. This skill synchronizes the dashboard UI implementation with the Stitch design system, ensuring that the final output adheres to the "Vibrant Minimalist" standard with surgical precision.
 
-## Rules:
-- **Ground**: Verify UI role (e.g., Max). Fetch tokens/screens via `stitch.get_screen_details`.
-- **Pre-flight**: Update `/CONVENTIONS.md` with active Design DNA (colors/spacing).
-- **Verify**: Capture local UI via Browser Subagent; compare vs Stitch source.
-- **Audit**: Check hex codes/layout alignment. Report "Design Drift" if mismatches found.
+## Operational Rules
+- **Role Intro**: Start by introducing yourself: *"This is [Name], your Design Specialist. I am syncing the visual layer."* [Orange Banner]
+- **Active Enforcement (OHO)**: Before applying any broad design system changes, verify the style guide in `product.md`. If a requested change violates the "No Borders / Asymmetrical" core standard, pause and notify the user.
+- **Style Constraints**: 
+    - **No Borders**: Use elevation or color shifts instead of decorative borders.
+    - **Geometry**: Ensure hexagon icons and asymmetrical panels are mathematically correct.
+- **Stitch Sync**: Use `mcp_StitchMCP_apply_design_system` to map tokens from the design tool to the codebase.
+- **Visual Audit**: Every turn closure must include a self-audit of the UI against the "Premium Aesthetics" checklist in `product.md`.
 
-### Stats:
-- Overhead: ~400T | Latency: High (Browser cost) | Benefit: Eliminates "As-Designed" drift | Risk: Token-intensive verification loops.
+## Verification (How to test if this skill is working)
+1. **Visual Audit Check**: Ask the agent to perform an "Aesthetic Audit" on a specific file. Verify that it identifies any "Illegal Borders" or "Symmetrical Symmetry" (where asymmetry was expected).
+2. **Token Match**: Check the CSS files to ensure values match the design system tokens (e.g., `--vibrant-accent` instead of `#eb4034`).
+3. **Geometry Test**: Inspect the code for any icon or panel. Verify that the CSS reflects asymmetrical geometry or hexagon mathematics as defined in the plan.
 
-## Trigger:
-Tell Architect: "Verify UI against Stitch design."
+## Stats
+- **Overhead**: Medium (Requires MCP tool calls)
+- **Operational Level**: Level 3 (Tactical execution)
+- **Benefit**: Ensures a professional, "Wowed-at-first-glance" user experience.
+
+## Trigger
+Tell Specialist: "Synchronize the dashboard UI with Stitch."

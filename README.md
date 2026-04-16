@@ -1,47 +1,34 @@
-# Agent Skills
+# Agent Skills: The Conductor Specification
 
-A curated library of surgical, high-fidelity capabilities designed for the **Intelligent Agent Operating System**. 
+A curated library of surgical, high-fidelity capabilities for an **Agent Operating System**. This repository establishes the standard for reliable, multi-agent orchestration through **Middleware Isolation** and **Artifact-Driven State.**
 
-These skills are not just code samples; they are tactical modules designed to be "installed" into agentic workflows via context injection, providing LLMs with consistent, high-performance logic for specific technical tasks.
+## 🧩 The Core Framework
+This library is more than a set of prompts; it is a **Technical System Specification** designed for professional agentic workflows.
 
-[**Explore the Interactive Dashboard →**](https://designgrappler.github.io/agent-skills/)
+- **[Product Strategy](./product.md)**: The "Team" metaphor and reliability-first vision.
+- **[Technical Spec](./techstack.md)**: Requirements for Middleware Isolation and Capability Bundles.
+- **[Team Hierarchy](./team.md)**: The 3-Tier operational model (Orchestration, Strategic, Tactical).
 
----
+## 🚀 Key Architectural Pillars
+1.  **Middleware Isolation**: Professional-grade role discipline via hardware-level tool filtering.
+2.  **Active Enforcement**: An "Operational Health Officer" (OHO) that pauses execution if the agent drifts from the plan.
+3.  **Artifact-Driven State**: intent is carried via `.agent/context/` files, not expensive conversation history.
 
-## 🧩 The Library
+## 📚 Skill Library (Middleware-Compatible)
 
-Each skill in this repository follows a strict architecture for maximum portability and token efficiency:
+| Skill | Tier | Bundle | Mission |
+| :--- | :--- | :--- | :--- |
+| [Conductor Setup](./skills/conductor-setup/SKILL.md) | 1 | ARCHITECT | Establish project baseline and DNA. |
+| [Team Setup](./skills/team-setup/SKILL.md) | 2 | ARCHITECT | Standardize Org Chart and Personnel DNA. |
+| [Handoff Optimizer](./skills/handoff-optimizer/SKILL.md) | 2 | ARCHITECT | Lossless transition of intent between roles. |
+| [Conductor Bundle](./skills/conductor-bundle/SKILL.md) | 1 | ARCHITECT | One-click OS initialization. |
+| [Context Cleaner](./skills/context-cleaner/SKILL.md) | 3 | SPECIALIST | Tactical token pruning and archival. |
+| [Memory Indexer](./skills/memory-indexer/SKILL.md) | 3 | SPECIALIST | Long-term decision and milestone archival. |
+| [Security Audit](./skills/security-audit/SKILL.md) | 3 | SENTINEL | Security sweeps and architectural drift audit. |
+| [Design Sync](./skills/design-sync/SKILL.md) | 3 | SPECIALIST | UI alignment with Stitch design tokens. |
 
-- **Surgical Precision**: Focused on one specific outcome (e.g., Memory Indexing, Handoff Optimization).
-- **Abbreviation System**: Each skill is identified by a unique 2-letter Adobe-style shorthand (e.g., `Cc` for Context Cleaner) for easy reference and mental mapping.
-- **Standardized Metadata**: Every skill includes a `SKILL.md` file with standardized YAML front matter for automated discovery and categorization.
-
-### Featured Skills
-
-| Abbr | Skill Name | Description |
-|:---|:---|:---|
-| **Cs** | **Conductor Setup** | The "Master Controller" that orchestrates task alignment and project DNA. |
-| **Ts** | **Team Setup** | Establishes multi-agent architecture via specialized personas. |
-| **Cc** | **Context Cleaner** | Tactically manages token bloat and context pruning. |
-| **Mi** | **Memory Indexer** | Structured archival and retrieval strategies for long-term state. |
-| **Ho** | **Handoff Optimizer** | Ensures seamless transition of intent and metadata between specialized agents. |
-| **Sa** | **Security Audit** | Automated validation of agent-generated code against security baselines. |
-| **Ds** | **Design Sync** | Bridges the gap between frontend implementation and design system tokens. |
-| **Cb** | **Conductor Bundle** | A complete "OS Setup Wizard" that deploys the core Conductor hierarchy. |
-
----
-
-## 🛠 Integration
-
-### How to use these skills
-
-1.  **Direct Injection**: Copy the contents of a `SKILL.md` directly into your Agent's system prompt or context window.
-2.  **Context Catalog**: Point your Agentic CLI (like Conductor) to this repository to automatically discover and load capabilities.
-3.  **Modular OS**: These skills are designed to be treated as external modules, separable from the core application logic to maintain a clean "Agent Operating System" architecture.
-
-### 🏛 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-*Questions or feedback? Contact [designgrappler@me.com](designgrappler@me.com)*
+## 🛠 Usage
+This framework is intended for host environments that support the **Conductor Spec**.
+1.  **Boot**: Deploy the `conductor-bundle` to initialize the `.agent/context/` DNA.
+2.  **Plan**: Use **Tier 2** agents to generate an `implementation_plan.md`.
+3.  **Execute**: Hand off to **Tier 3** specialists with **Active Enforcement** enabled.
