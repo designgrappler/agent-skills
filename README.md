@@ -32,15 +32,13 @@ The full library of skills is available in a vibrant, searchable dashboard.
 | [Security Audit](./skills/security-audit/SKILL.md) | 3 | SENTINEL | Security sweeps and architectural drift audit. |
 | [Design Sync](./skills/design-sync/SKILL.md) | 3 | SPECIALIST | UI alignment with Stitch design tokens. |
 
-## 🛠 Usage
-This framework is intended for host environments that support the **Conductor Spec**.
-
-### Option A: Professional CLI (Recommended)
-```bash
-gemini skills install https://github.com/designgrappler/agent-skills --path skills/conductor-bundle
-```
-
-### Option B: Surgical Bootstrap (Zero-Dependency)
-```bash
-curl -sSL https://raw.githubusercontent.com/designgrappler/agent-skills/main/scripts/bootstrap.sh | bash
-```
+### Usage
+1.  **Global Installation**: Install the `gemini` CLI:
+    ```bash
+    npm install -g @google/gemini-cli
+    ```
+2.  **Skill Deployment**: Browse the [Skill Gallery](https://designgrappler.github.io/agent-skills/) and use the **Deploy Protocol** button for any skill:
+    ```bash
+    # Example: Deploy the Conductor Bundle
+    gemini skills install https://github.com/designgrappler/agent-skills --path skills/conductor-bundle
+    ```

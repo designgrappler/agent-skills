@@ -143,6 +143,27 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
           </div>
         </section>
 
+        <!-- Prerequisite Banner -->
+        <section class="max-w-[1200px] mx-auto px-8 pt-8">
+          <div class="bg-indigo-50 border-2 border-indigo-100 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+            <div class="flex items-start gap-4">
+              <div class="bg-indigo-600 p-3 rounded-2xl text-white">
+                <i data-lucide="terminal" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-indigo-900 mb-1">Step 1: Environment Initialization</h2>
+                <p class="text-indigo-700/70 text-sm font-medium">The Gemini CLI is required to deploy and manage Conductor OS skills.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+              <code class="bg-white px-6 py-3 rounded-2xl border border-indigo-100 text-indigo-600 font-mono text-sm flex-1 md:flex-none">npm install -g @google/gemini-cli</code>
+              <button id="copy-cli-btn" class="bg-indigo-600 text-white p-3 rounded-2xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200" title="Copy Command">
+                <i data-lucide="copy" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
         <!-- Skills Grid -->
         <section class="max-w-[1200px] mx-auto px-8 pb-12 pt-8">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="skills-grid">
@@ -221,8 +242,7 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
               <i data-lucide="arrow-right" class="w-6 h-6"></i>
             </button>
             <div class="flex gap-4">
-              <button id="bootstrap-skill-btn" class="bg-indigo-50 text-indigo-700 px-6 py-3 rounded-2xl text-sm font-bold hover:bg-indigo-100 transition-all">Surgical (CURL)</button>
-              <button id="deploy-skill-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">CLI (Recommended)</button>
+              <button id="deploy-skill-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">Deploy Protocol</button>
             </div>
           </div>
           <div class="flex-1 overflow-y-auto p-12 custom-scrollbar" id="skill-detail-content">
@@ -236,4 +256,4 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
     <div class="markdown-body">
       ${L.parse(t.content)}
     </div>
-  `;let r=document.getElementById(`side-panel`),i=document.getElementById(`panel-backdrop`),a=document.getElementById(`panel-content`),o=document.getElementById(`deploy-skill-btn`);o.onclick=()=>{let t=`gemini skills install https://github.com/designgrappler/agent-skills --path skills/${e}`;navigator.clipboard.writeText(t);let n=o.innerHTML;o.innerHTML=`<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Copied!`,Q({icons:Z}),setTimeout(()=>o.innerHTML=n,2e3)};let s=document.getElementById(`bootstrap-skill-btn`);s.onclick=()=>{navigator.clipboard.writeText(`curl -sSL https://raw.githubusercontent.com/designgrappler/agent-skills/main/scripts/bootstrap.sh | bash`);let e=s.innerHTML;s.innerHTML=`<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Copied!`,Q({icons:Z}),setTimeout(()=>s.innerHTML=e,2e3)},r.classList.remove(`invisible`),setTimeout(()=>{i.classList.add(`opacity-100`),a.classList.remove(`translate-x-full`)},10),Q({icons:Z})}function bM(){let e=document.getElementById(`panel-backdrop`),t=document.getElementById(`panel-content`),n=document.getElementById(`side-panel`);e.classList.remove(`opacity-100`),t.classList.add(`translate-x-full`),setTimeout(()=>{n.classList.add(`invisible`)},300)}_M();
+  `;let r=document.getElementById(`side-panel`),i=document.getElementById(`panel-backdrop`),a=document.getElementById(`panel-content`),o=document.getElementById(`deploy-skill-btn`);o.onclick=()=>{let t=`gemini skills install https://github.com/designgrappler/agent-skills --path skills/${e}`;navigator.clipboard.writeText(t);let n=o.innerHTML;o.innerHTML=`<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Copied!`,Q({icons:Z}),setTimeout(()=>o.innerHTML=n,2e3)};let s=document.getElementById(`copy-cli-btn`);s&&(s.onclick=()=>{navigator.clipboard.writeText(`npm install -g @google/gemini-cli`);let e=s.innerHTML;s.innerHTML=`<i data-lucide="check" class="w-5 h-5"></i>`,setTimeout(()=>s.innerHTML=e,2e3)}),r.classList.remove(`invisible`),setTimeout(()=>{i.classList.add(`opacity-100`),a.classList.remove(`translate-x-full`)},10),Q({icons:Z})}function bM(){let e=document.getElementById(`panel-backdrop`),t=document.getElementById(`panel-content`),n=document.getElementById(`side-panel`);e.classList.remove(`opacity-100`),t.classList.add(`translate-x-full`),setTimeout(()=>{n.classList.add(`invisible`)},300)}_M();

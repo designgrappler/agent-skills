@@ -5,10 +5,11 @@ This guide provides the technical and operational framework for deploying the **
 ## Step 0: Prerequisite Audit
 Before initializing your workspace, ensure your environment meets the following standards for **High-Rigor Orchestration**.
 
-| Component | Professional (Recommended) | Surgical (Fallback) |
+| Component | Requirement | Authority |
 | :--- | :--- | :--- |
-| **Tooling** | `gemini` CLI installed via `npm` or `brew` | `bash` + `curl` (No CLI required) |
-| **Capabilities** | `fs_read`, `fs_write`, `mcp_StitchMCP` | `fs_read`, `fs_write` |
+| **Orchestrator** | Conductor OS Dashboard | This Repository |
+| **Logic** | Conductor Agent Skills | `skills/` Directory |
+| **CLI** | `gemini` CLI | **Mandatory Pre-requisite** |
 | **Workspace** | Root-level directory write access | Root-level directory write access |
 
 ---
@@ -42,23 +43,16 @@ Every Tier 3 Specialist is bound by the **Open Handoff Optimizer (OHO)** logic:
 - **Validation**: Every turn must end with a Quality Audit.
 
 ## 4. Installation
-We provide two distinct paths for deploying the Conductor OS, depending on your environment.
-
-### Mode A: Professional (CLI)
 This is the recommended path for developers with a standard environment.
 ```bash
 # Example: Install the Conductor Bundle
 gemini skills install https://github.com/designgrappler/agent-skills --path skills/conductor-bundle
 ```
 
-### Mode B: Surgical (Bootstrap)
-Use this path if you are in a limited environment without the `gemini` CLI or Node.js.
-```bash
-# One-liner to bootstrap the Conductor OS
-curl -sSL https://raw.githubusercontent.com/designgrappler/agent-skills/main/scripts/bootstrap.sh | bash
-```
+## 5. Next Steps
+Once your environment is initialized, use the **Deploy Protocol** button in the dashboard to copy specific installation commands for each skill.
 
-## 5. Security & Isolation
+## 6. Security & Isolation
 Architect-level skills (Tier 1 & 2) are strictly restricted from modifying production source code (`/src`, `/lib`). This creates a **Middleware Isolation** layer that protects your codebase from automated drift.
 
 ---
