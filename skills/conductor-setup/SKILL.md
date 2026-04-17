@@ -5,7 +5,7 @@ Abbreviation: Cs
 Category: Orchestration
 Type: Tier 1
 Bundle: ARCHITECT
-Capabilities: [fs_read, net_fetch]
+Capabilities: [fs_read, fs_write, net_fetch]
 ---
 
 # Skill: Conductor Setup
