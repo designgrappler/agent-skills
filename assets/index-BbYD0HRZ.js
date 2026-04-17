@@ -116,10 +116,16 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
               <p class="text-lg text-slate-500 leading-relaxed mb-6">
                 Unlike tool integrations, your <span class="text-slate-900 font-semibold">Agent OS</span> is the architectural layer that sits between your tools and your goals. It prevents specialist amnesia, enforces safety standards, and ensures that multiple agents can work as a unified team without handoff friction.
               </p>
-              <a href="https://github.com/designgrappler/agent-skills/blob/main/GUIDE.md" target="_blank" class="inline-flex items-center gap-2 text-indigo-600 font-bold text-sm hover:underline">
-                <i data-lucide="book-open" class="w-4 h-4"></i>
-                Read the Implementation Guide
-              </a>
+              <div class="flex items-center gap-6">
+                <a href="https://github.com/designgrappler/agent-skills/blob/main/GUIDE.md" target="_blank" class="inline-flex items-center gap-2 text-indigo-600 font-bold text-sm hover:underline">
+                  <i data-lucide="book-open" class="w-4 h-4"></i>
+                  Read the Implementation Guide
+                </a>
+                <a href="https://github.com/designgrappler/agent-skills" target="_blank" class="inline-flex items-center gap-2 text-indigo-600 font-bold text-sm hover:underline">
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                  Browse the Repository
+                </a>
+              </div>
             </div>
             <div class="w-full md:w-[420px] bg-slate-50 rounded-3xl p-8">
               <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Skill Execution Modes</h4>
@@ -214,8 +220,9 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
             <button id="close-panel" class="p-3 hover:bg-slate-50 rounded-2xl text-slate-500 transition-colors">
               <i data-lucide="arrow-right" class="w-6 h-6"></i>
             </button>
-            <div class="flex gap-2">
-              <button id="deploy-skill-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">Deploy Protocol</button>
+            <div class="flex gap-4">
+              <button id="bootstrap-skill-btn" class="bg-indigo-50 text-indigo-700 px-6 py-3 rounded-2xl text-sm font-bold hover:bg-indigo-100 transition-all">Surgical (CURL)</button>
+              <button id="deploy-skill-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">CLI (Recommended)</button>
             </div>
           </div>
           <div class="flex-1 overflow-y-auto p-12 custom-scrollbar" id="skill-detail-content">
@@ -229,4 +236,4 @@ lucide.createIcons({icons});\``);if(r===void 0)throw Error("`createIcons()` only
     <div class="markdown-body">
       ${L.parse(t.content)}
     </div>
-  `;let r=document.getElementById(`side-panel`),i=document.getElementById(`panel-backdrop`),a=document.getElementById(`panel-content`),o=document.getElementById(`deploy-skill-btn`);o.onclick=()=>{let t=`gemini skills install https://github.com/designgrappler/agent-skills --path ${e}`;navigator.clipboard.writeText(t);let n=o.innerHTML;o.innerHTML=`<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Copied!`,Q({icons:Z}),setTimeout(()=>o.innerHTML=n,2e3)},r.classList.remove(`invisible`),setTimeout(()=>{i.classList.add(`opacity-100`),a.classList.remove(`translate-x-full`)},10),Q({icons:Z})}function bM(){let e=document.getElementById(`panel-backdrop`),t=document.getElementById(`panel-content`),n=document.getElementById(`side-panel`);e.classList.remove(`opacity-100`),t.classList.add(`translate-x-full`),setTimeout(()=>{n.classList.add(`invisible`)},300)}_M();
+  `;let r=document.getElementById(`side-panel`),i=document.getElementById(`panel-backdrop`),a=document.getElementById(`panel-content`),o=document.getElementById(`deploy-skill-btn`);o.onclick=()=>{let t=`gemini skills install https://github.com/designgrappler/agent-skills --path skills/${e}`;navigator.clipboard.writeText(t);let n=o.innerHTML;o.innerHTML=`<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Copied!`,Q({icons:Z}),setTimeout(()=>o.innerHTML=n,2e3)};let s=document.getElementById(`bootstrap-skill-btn`);s.onclick=()=>{navigator.clipboard.writeText(`curl -sSL https://raw.githubusercontent.com/designgrappler/agent-skills/main/scripts/bootstrap.sh | bash`);let e=s.innerHTML;s.innerHTML=`<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Copied!`,Q({icons:Z}),setTimeout(()=>s.innerHTML=e,2e3)},r.classList.remove(`invisible`),setTimeout(()=>{i.classList.add(`opacity-100`),a.classList.remove(`translate-x-full`)},10),Q({icons:Z})}function bM(){let e=document.getElementById(`panel-backdrop`),t=document.getElementById(`panel-content`),n=document.getElementById(`side-panel`);e.classList.remove(`opacity-100`),t.classList.add(`translate-x-full`),setTimeout(()=>{n.classList.add(`invisible`)},300)}_M();

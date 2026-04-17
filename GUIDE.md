@@ -1,6 +1,17 @@
 # Conductor OS: Implementation Guide
 
-This guide provides the technical and operational framework for deploying the **Conductor-compatible Agent Orchestration** system. Follow this guide to establish a high-rigor, multi-agent environment in your workspace.
+This guide provides the technical and operational framework for deploying the **Conductor-compatible Agent Orchestration** system.
+
+## Step 0: Prerequisite Audit
+Before initializing your workspace, ensure your environment meets the following standards for **High-Rigor Orchestration**.
+
+| Component | Professional (Recommended) | Surgical (Fallback) |
+| :--- | :--- | :--- |
+| **Tooling** | `gemini` CLI installed via `npm` or `brew` | `bash` + `curl` (No CLI required) |
+| **Capabilities** | `fs_read`, `fs_write`, `mcp_StitchMCP` | `fs_read`, `fs_write` |
+| **Workspace** | Root-level directory write access | Root-level directory write access |
+
+---
 
 ## 1. The 3-Tier Architecture
 We organize agent logic into three distinct tiers to ensure role discipline and prevent context rot.
@@ -16,11 +27,11 @@ A professional agent session follows a specific sequence to maintain state integ
 
 ### Step 1: Deployment
 Deploy the `conductor-bundle` to your workspace. This script calls the necessary Tier 1 and Tier 2 skills to initialize the `.agent/` directory.
-- **Triggers**: "Initialize project with Conductor orchestration."
+- **Trigger**: "Deploy the Conductor OS bundle."
 
 ### Step 2: Team Setup
 Use the `team-setup` skill to define your personnel. This skill performs a **Real-Time Discovery** of available `/skills` and maps them to persona names.
-- **Rules**: Every agent must introduce themselves with their personnel name (e.g., "I am [Name], your [Role]").
+- **Trigger**: "Set up our Conductor Team."
 
 ### Step 3: Tactical Handoff
 Before a Tier 3 Specialist begins work, the `handoff-optimizer` creates a **Summary of Intent**. This preserves reasoning from the Architect turn to the Specialist turn.
@@ -31,11 +42,20 @@ Every Tier 3 Specialist is bound by the **Open Handoff Optimizer (OHO)** logic:
 - **Validation**: Every turn must end with a Quality Audit.
 
 ## 4. Installation
-To install specific skills from this library, use the following gemini-cli protocol (if supported):
+We provide two distinct paths for deploying the Conductor OS, depending on your environment.
 
+### Mode A: Professional (CLI)
+This is the recommended path for developers with a standard environment.
 ```bash
-# Example: Install the Handoff Optimizer
-gemini skills install https://github.com/designgrappler/agent-skills --path skills/handoff-optimizer
+# Example: Install the Conductor Bundle
+gemini skills install https://github.com/designgrappler/agent-skills --path skills/conductor-bundle
+```
+
+### Mode B: Surgical (Bootstrap)
+Use this path if you are in a limited environment without the `gemini` CLI or Node.js.
+```bash
+# One-liner to bootstrap the Conductor OS
+curl -sSL https://raw.githubusercontent.com/designgrappler/agent-skills/main/scripts/bootstrap.sh | bash
 ```
 
 ## 5. Security & Isolation

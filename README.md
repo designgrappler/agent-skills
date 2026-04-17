@@ -5,9 +5,9 @@ A curated library of surgical, high-fidelity capabilities for an **Agent Operati
 ## 🧩 The Core Framework
 This library is more than a set of prompts; it is a **Technical System Specification** designed for professional agentic workflows.
 
-- **[Product Strategy](./product.md)**: The "Team" metaphor and reliability-first vision.
-- **[Technical Spec](./techstack.md)**: Requirements for Middleware Isolation and Capability Bundles.
-- **[Team Hierarchy](./team.md)**: The 3-Tier operational model (Orchestration, Strategic, Tactical).
+- **[Product Strategy](./context/product.md)**: The "Team" metaphor and reliability-first vision.
+- **[Technical Spec](./context/techstack.md)**: Requirements for Middleware Isolation and Capability Bundles.
+- **[Team Hierarchy](./context/team.md)**: The 3-Tier operational model (Orchestration, Strategic, Tactical).
 - **[Implementation Guide](./GUIDE.md)**: How to integrate the Conductor OS into your workspace.
 
 ## 🎨 Knowledge Graph & Gallery
@@ -34,6 +34,13 @@ The full library of skills is available in a vibrant, searchable dashboard.
 
 ## 🛠 Usage
 This framework is intended for host environments that support the **Conductor Spec**.
-1.  **Boot**: Deploy the `conductor-bundle` to initialize the `.agent/context/` DNA.
-2.  **Plan**: Use **Tier 2** agents to generate an `implementation_plan.md`.
-3.  **Execute**: Hand off to **Tier 3** specialists with **Active Enforcement** enabled.
+
+### Option A: Professional CLI (Recommended)
+```bash
+gemini skills install https://github.com/designgrappler/agent-skills --path skills/conductor-bundle
+```
+
+### Option B: Surgical Bootstrap (Zero-Dependency)
+```bash
+curl -sSL https://raw.githubusercontent.com/designgrappler/agent-skills/main/scripts/bootstrap.sh | bash
+```

@@ -1,0 +1,5 @@
+# Conductor OS: Public Distribution
+node_modules/
+.DS_Store
+*.log
+.env
