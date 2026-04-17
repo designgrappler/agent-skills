@@ -1,4 +1,6 @@
 ---
+name: context-cleaner
+description: The "Token Guard" that manages token bloat and prunes stale project context.
 Abbreviation: Cc
 Category: Maintenance
 Type: Tier 3

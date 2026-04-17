@@ -1,4 +1,6 @@
 ---
+name: team-setup
+description: The "Process Scheduler" that establishes the multi-agent architecture and maps personnel to roles.
 Abbreviation: Ts
 Category: Orchestration
 Type: Tier 2

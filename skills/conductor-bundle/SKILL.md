@@ -1,4 +1,6 @@
 ---
+name: conductor-bundle
+description: The "OS Setup Wizard" that deploys the core Conductor OS hierarchy in a single pass.
 Abbreviation: Cb
 Category: Bundles
 Type: Tier 1

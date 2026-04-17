@@ -1,4 +1,6 @@
 ---
+name: generic-specialist
+description: The "Fallback Logic" for specialized roles that provides a high-rigor implementation framework.
 Abbreviation: Gs
 Category: Execution
 Type: Tier 3

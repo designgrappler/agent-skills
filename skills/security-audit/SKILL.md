@@ -1,4 +1,6 @@
 ---
+name: security-audit
+description: The "Governance Guard" that performs rigorous sweeps for security gaps and architectural drift.
 Abbreviation: Sa
 Category: Security
 Type: Tier 3

@@ -1,4 +1,6 @@
 ---
+name: handoff-optimizer
+description: The "Intent Link" that ensures seamless transition of strategy and context between specialized agents.
 Abbreviation: Ho
 Category: Orchestration
 Type: Tier 2

@@ -1,4 +1,6 @@
 ---
+name: conductor-setup
+description: The "Master Controller" that establishes project orchestration, persona identity, and baseline DNA.
 Abbreviation: Cs
 Category: Orchestration
 Type: Tier 1

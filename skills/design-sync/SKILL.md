@@ -1,4 +1,6 @@
 ---
+name: design-sync
+description: The "Aesthetic Guard" that synchronizes the UI implementation with the Stitch design system.
 Abbreviation: Ds
 Category: Design
 Type: Tier 3

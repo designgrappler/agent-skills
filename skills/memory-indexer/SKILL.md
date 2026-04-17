@@ -1,4 +1,6 @@
 ---
+name: memory-indexer
+description: The "Long-term State Archive" that maintains a structured index of project decisions and milestones.
 Abbreviation: Mi
 Category: Retrieval
 Type: Tier 3
