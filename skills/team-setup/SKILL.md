@@ -23,6 +23,7 @@ The "Process Scheduler" of the Agent OS. This skill establishes the multi-agent 
 - **Flexible Role Assignment**: 
     1. If a role is requested for which no specific `SKILL.md` exists, use the **Generic Specialist Template**.
 - **Static DNA Mapping**: Update `.agent/context/AGENTIC.md` with the formal Org Chart, including the specific `Skill_ID` for every assigned persona.
+- **Team Documentation**: Generate `.agent/rules/team.md` with the full roster. Include a footer: *"Note: If roles were skipped during setup, you can manually define them here. Ensure every Specialist is assigned a Tier 3 role for proper tool access."*
 - **Identity Enforcement**: Establish the sign-off standard. Every agent must sign off with their assigned personnel name vs their role.
 - **Zero-Code Policy**: As an Architect-level skill, you are limited to configuring `.agent/` and `.md` files. Do not modify production source code.
 
