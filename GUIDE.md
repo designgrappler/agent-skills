@@ -50,7 +50,10 @@ gemini skills install https://github.com/designgrappler/agent-skills --path skil
 ```
 
 ## 5. Next Steps
-Once your environment is initialized, use the **Deploy Protocol** button in the dashboard to copy specific installation commands for each skill.
+Once your environment is initialized:
+1. **Trigger Activation**: Run the trigger command (e.g., `Deploy the Conductor OS bundle.`).
+2. **Personnel Interview**: The system will **STOP AND ASK** you for personnel names. This is where you define your "Conductor", "Architect", and "Specialist" identities.
+3. **Registry Generation**: The agent will then generate the `AGENTIC.md` and `team.md` artifacts based on your specific interview responses.
 
 ## 6. Security & Isolation
 Architect-level skills (Tier 1 & 2) are strictly restricted from modifying production source code (`/src`, `/lib`). This creates a **Middleware Isolation** layer that protects your codebase from automated drift.

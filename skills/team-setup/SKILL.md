@@ -18,6 +18,7 @@ The "Process Scheduler" of the Agent OS. This skill establishes the multi-agent 
 - **Real-Time Discovery**: 
     1. Perform an `ls` of the `/skills` directory to identify available Tier 3 Specialists.
     2. Present the user with a menu of "Installed Specialist Capabilities."
+    3. **STOP AND ASK**: Request the personnel names for each required role (e.g., "What is the name of the Lead Architect?"). Do not use placeholders like 'Tim' or 'Specialist'.
 - **Flexible Role Assignment**: 
     1. If the user wants a role for which no `SKILL.md` exists, inform them that you will use the **Generic Specialist Template** for that role until a specific skill is added.
 - **Static DNA Mapping**: Update `.agent/context/AGENTIC.md` with the formal Org Chart, including the specific `Skill_ID` for every assigned persona.
