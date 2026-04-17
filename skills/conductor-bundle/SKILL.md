@@ -17,10 +17,10 @@ The "OS Setup Wizard" of the Agent OS. This bundle deploys the core hierarchy (C
 - **Role Intro**: Start by introducing yourself: *"I am the Conductor Bundle. I will now guide you through the Agent OS initialization."* [Blue Banner]
 - **Foundational Check**: Verify if `.agent/context/AGENTIC.md` already exists to avoid overwriting an existing project DNA.
 - **Execution Sequence**:
-    1. **Initialization**: Call `conductor-setup` to establish the project baseline and DNA file structure. Use the command `[Owner]` for the root personnel slot.
-    2. **Orchestration**: Call `team-setup`. **STOP AND ASK** the user to provide the names for the Conductor, Architect, and Specialist roles. Do not proceed until names are confirmed.
+    1. **Initialization**: Call `conductor-setup` to establish the project baseline and DNA file structure.
+    2. **Orchestration**: Call `team-setup`. Follow the **SPECIALIST INTERVIEW** protocol to define the number and names of all personnel.
     3. **Alignment**: Call `handoff-optimizer` to register the Manual-First transition protocol.
-- **Summary of Deployment**: At the conclusion, generate a "Welcome Kit" that lists the active personnel (using the names provided during the interview), their Operational Levels, and the location of the project DNA.
+- **Summary of Deployment**: At the conclusion, generate a "Welcome Kit" that lists **all configured personnel** (Conductor, Architect, and the full Specialist roster). The table must reflect the specific names and role-count provided during the interview.
 
 ## Verification (How to test if this skill is working)
 1. **Deployment Audit**: Verify that all three core logic files (`.agent/context/AGENTIC.md`, `.agent/context/tracks.md`, and `.agent/rules/team.md`) have been successfully created.
