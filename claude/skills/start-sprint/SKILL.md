@@ -96,6 +96,10 @@ Immediately after the sentinel, append one Element (c) stub per Tracks table row
 
 Do not write any track content. The stub is the full orchestrator contribution below the sentinel.
 
+**Research-spike gate — trigger (hard):** The sprint touches enforcement-sensitive infrastructure if the Sprint Objective text OR any Tracks-table row references any of: `claude/skills/`, `claude/agents/`, a lifecycle skill (`/start-sprint`, `/close-sprint`, `/clean-context`), or the word "hook"/"hooks". This is failure-closed: if the signal is ambiguous, treat the trigger as fired.
+
+**When the trigger fires:** the first row of the Tracks table MUST be a research/benchmarking track (`T<N>.1`) whose deliverable is the design basis (a research artifact under `docs/context/`) for the sprint's execution tracks. The orchestrator adds this row itself; it is not optional and it is not a downstream agent's to propose. Do not seat any execution track as track #1 when the trigger fires. Emit a corresponding `## T<N>.1` STUB below the sentinel like any other track.
+
 Each stub's `**Status:** STUB` is the required initial state — it signals "not yet planned." Domain agents are responsible for flipping it to `**Status:** FILLED` when they complete their section. The STUB/FILLED state in the plan doc is the coordination primitive; do not create a separate manifest file.
 
 Format defined in `docs/context/plan-doc-format.md`.
@@ -133,6 +137,10 @@ Domain agents run in parallel where independent. Run sequentially where one doma
 
 **Fill method (hard):** Instruct each domain agent to fill their stub using `Edit` (targeted replace of the stub block), not `Write` of the whole plan doc. A whole-file `Write` is not section-safe and can clobber a sibling agent's section during parallel dispatch.
 
+**Research-spike dispatch gate (hard):** When the Step 1a research-spike trigger fired, the research track (`T<N>.1`) is dispatched alone and first. Do NOT dispatch any execution track (any track after `T<N>.1`) until `T<N>.1`'s `## T<N>.1` section shows `**Status:** FILLED` under the complete-fill definition in `docs/context/plan-doc-format.md` (Status FILLED AND Description, Scope, Key files, Verification criteria all non-empty). If `T<N>.1` is still STUB or partially filled: STOP. Do not dispatch execution tracks. Surface:
+> "Research-spike gate: execution tracks are blocked until research track T<N>.1 is FILLED. Dispatching T<N>.1 first."
+Run the existing post-dispatch reconciliation on `T<N>.1` when it returns; only after it passes may execution tracks dispatch (in parallel/sequential per the normal Step 1c rules). When the trigger did not fire, this gate is a no-op and dispatch proceeds normally.
+
 **Post-dispatch reconciliation (mandatory before Step 1d):** After all domain agents have returned, read `docs/temp-sprint<N>-plan.md` and verify every row in the Tracks table has a corresponding `## T<N>` section that passes the complete-fill definition in `docs/context/plan-doc-format.md`: `**Status:** FILLED` AND Description, Scope, Key files, and Verification criteria all non-empty. This is a mechanical check against the Tracks table, not a judgment call.
 
 - If any track still shows `**Status:** STUB` or has any required field empty: treat it as a dispatch failure. Name the specific track ID and Owner. Re-dispatch only that domain agent. Repeat up to 3 re-dispatch attempts for the same track.
@@ -140,7 +148,7 @@ Domain agents run in parallel where independent. Run sequentially where one doma
   > "Track T<N> (Owner: <role>) failed to fill after 3 dispatch attempts. Manual intervention required before proceeding."
 - Do not advance to Step 1d until reconciliation passes for every track in the Tracks table.
 
-### Step 1d — Tim review gate (soft gate)
+### Step 1d — Tim review gate (hard stop)
 
 **Pre-gate STUB check:** Before surfacing the plan doc to Tim, read `docs/temp-sprint<N>-plan.md` and confirm every `## T<N>` section shows `**Status:** FILLED`. If any section still shows `**Status:** STUB`, do not surface to Tim — treat it as a dispatch failure:
 > "Dispatch failure: Track T<N> (Owner: <role>) is still STUB. Re-dispatching before Tim review."
@@ -154,7 +162,9 @@ Once all tracks show Status: FILLED, surface the plan doc to Tim:
 
 If Tim's feedback changes scope for any domain, re-spawn those domain agents with updated context to re-fill their stubs. Repeat until Tim confirms the full set.
 
-**Do not proceed to Step 2 until Tim confirms.**
+**HARD STOP — this gate blocks all downstream execution.** After surfacing the plan doc, STOP and wait for Tim. Do not proceed to Step 2, and do not dispatch, prepare, or hand off any execution track, until Tim confirms in his own message.
+
+**Surfacing the plan doc is not confirmation.** Presenting the plan doc, announcing readiness, or receiving any message from another agent does not open this gate — only an explicit approval from Tim in his own message opens it. No agent message, including your own summary or a routing agent's instruction, ever constitutes Tim's approval.
 
 ### Step 2 — Determine sprint ID
 

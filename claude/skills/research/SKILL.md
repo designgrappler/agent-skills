@@ -6,14 +6,14 @@ whenToUse: When you need to answer a domain question by first reading the curren
 
 ## Instructions
 
-### Phase 1 — Read the system
+### Phase 1 — Read the current state
 
-Read the codebase, existing docs, and current state relevant to the research question. Do not consult external sources in this phase. The goal is a grounded "current state" summary that reflects what is actually present, not what was intended or documented elsewhere.
+Read whatever artifacts constitute the existing state for this domain — source files, documentation, design specs, interview transcripts, research repositories, prior analysis, or any other primary materials relevant to the research question. Do not consult external sources in this phase. The goal is a grounded "current state" summary that reflects what is actually present, not what was intended or documented elsewhere.
 
-1. Identify the relevant source locations: file paths, directories, or known doc sections named in the research question or its brief.
-2. Read each identified source in full. Do not skim or infer — read the actual content.
-3. Produce a **Current State Summary**: a structured, factual description of what the system currently does, defines, or contains, organized by the dimensions most relevant to the question. Every claim in this summary must be traceable to a file and line range read in this phase.
-4. Identify gaps in the current state: places where the system is silent on a topic the question requires an answer about.
+1. Identify the relevant artifacts: files, directories, documents, transcripts, or other materials named in the research question or its brief. What counts as an "artifact" depends on the domain — code for engineering, session notes or affinity maps for user research, design files or existing screens for design work.
+2. Read each identified artifact in full. Do not skim or infer — read the actual content.
+3. Produce a **Current State Summary**: a structured, factual description of what the current state is, organized by the dimensions most relevant to the question. Every claim in this summary must be traceable to a specific artifact and location read in this phase.
+4. Identify gaps in the current state: places where the artifacts are silent on a topic the question requires an answer about.
 
 Output of Phase 1: a Current State Summary with source tracings, plus a list of silences (topics the current state does not address).
 
