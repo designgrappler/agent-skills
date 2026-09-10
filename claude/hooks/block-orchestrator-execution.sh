@@ -16,8 +16,8 @@
 #   - Path-pattern matching is delegated to the `if`-clause in
 #     .claude/settings.json (see R1 in the Bridge Research Basis). This script
 #     only decides on caller identity.
-#   - Requires `jq` (assumed present on the development machine; install via
-#     Homebrew if not: `brew install jq`).
+#   - Requires `jq` at runtime; exits 2 with an actionable message if absent
+#     (install via: brew install jq).
 #
 # Blocked path coverage:
 #   CLAUDE.md, claude/**, .claude/agents/**, .claude/skills/**,
@@ -36,7 +36,7 @@
 
 set -euo pipefail
 
-command -v jq >/dev/null 2>&1 || { echo "[hook] requires jq — install via: brew install jq" >&2; exit 1; }
+command -v jq >/dev/null 2>&1 || { echo "block-orchestrator-execution.sh: requires jq — install via: brew install jq" >&2; exit 2; }
 
 # Read all stdin
 INPUT="$(cat)"

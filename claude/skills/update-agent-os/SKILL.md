@@ -107,6 +107,30 @@ Display neither list yet — hold all data for Phase 3.
 
 **c. Removed-from-canonical** — filenames in `.claude/hooks/` but absent from canonical. **Default: Keep local hook (no canonical match).** Never auto-removed.
 
+**Three-way merge detection (applies to all Outdated rows):**
+
+For every file classified as Outdated (skills, agents, or hooks), apply the following sub-classification before recording the row in the diff table.
+
+Read the hash manifest for the appropriate install tier:
+- Skills and agents: `~/.claude/agent-os-manifest.json`
+- Hooks: `.claude/agent-os-manifest.json`
+
+If the manifest file is absent, or it contains no `files` entry for this file's path, classify the row as **Clean update** and proceed as today — no base was recorded yet (first-install context). No error.
+
+If a manifest entry exists for this file:
+1. Read the `base-hash` value from the entry.
+2. Compute the SHA-256 hash of the local installed file:
+   ```bash
+   shasum -a 256 "<local-file-path>" | cut -d' ' -f1
+   ```
+3. Sub-classify:
+   - If local-hash == base-hash: **Clean update** — canonical has changed but the local file is unmodified from the last recorded install. Safe to overwrite as today.
+   - If local-hash != base-hash: **Three-way conflict** — the local file has been modified since the last recorded install AND canonical has also changed. Requires explicit per-file resolution. Never blind-overwrite.
+
+Record each Outdated row's sub-classification (Clean update or Three-way conflict) and carry it into Phase 4 and Phase 5.
+
+**Absent manifest is not an error.** The skill's existing tolerance posture applies: a missing manifest means first-install context for all Outdated rows on this run — no conflict detection; manifest is written at end of Phase 5.
+
 **Retired-artifacts detection (fires every run):**
 
 Using the canonical `agents[]` and `skills[]` arrays already resolved in Phase 2, perform a canonical diff against local agent and skill directories. Do not use a hardcoded filename list.
@@ -202,10 +226,19 @@ If there are no New, Outdated, or Removed rows across all three groups, state: "
 **Safety-control gate for hook rows:** Before presenting any `[hook]` row with Status `Outdated` or `New`, display verbatim:
 > `This is a safety-control hook. Review the diff carefully before approving.`
 
-**Safety-control gate for Outdated rows:** Before presenting any `[skill]` or `[agent]` row with Status `Outdated`, display verbatim:
-> `This file exists locally and will be overwritten. Review before approving.`
+**Safety-control gate for Outdated rows:** Before presenting any `[skill]` or `[agent]` row with Status `Outdated`, display one of the following messages based on the Phase 3 sub-classification:
 
-Then show the diff between the local file and the canonical file for that row before asking for confirmation.
+- **Clean update** (local-hash == base-hash, or no manifest entry): display verbatim:
+  > `This file exists locally and will be overwritten. Canonical has changed; your local copy is unmodified from the last recorded install.`
+
+- **Three-way conflict** (local-hash != base-hash): display verbatim:
+  > `THREE-WAY CONFLICT — Your local copy has been modified since the last recorded install, AND the canonical version has also changed. You must choose: keep local (skip) or accept canonical (overwrite). Never auto-overwritten.`
+
+For **Three-way conflict** rows: show the two-way diff (local vs canonical) so the user can see what the canonical change contains. Also display: `Note: base-hash recorded at last install = <base-hash>; local-hash now = <local-hash> — confirms local was modified after install.` Present the resolution prompt: `Type "accept" to overwrite with canonical or "keep" to skip this file.`
+
+For **Clean update** rows: show the standard two-way diff (local vs canonical) and the standard per-file confirmation prompt, as today.
+
+In both cases, per-file confirmation is required — Outdated rows (Clean update or Three-way conflict) cannot be included in "Approve all".
 
 **CLAUDE.md reference rows** — appended after the main table when the diff produced rename or removal rows. These are informational only; see Phase 3 CLAUDE.md reference scan.
 
@@ -251,6 +284,42 @@ For each action the user approved, execute one at a time:
 - **Do NOT edit user-owned `.claude/settings.json` fields** (`permissions`, allow/deny lists, `mcpServers`, custom hooks). Canonical fields are patched if-absent by Phase 7 only. If a new hook was installed, print advisory: `note: verify .claude/settings.json PreToolUse wiring references .claude/hooks/<E>`
 
 Never apply an action the user did not explicitly approve.
+
+**Hash manifest update (runs after all writes complete):**
+
+After all Install, Update, and Rename writes for this run complete, record the SHA-256 hash of each written file in the appropriate hash manifest. This establishes the new base for three-way conflict detection on future runs.
+
+For each file written during this Phase 5 run (Install, Update, Rename — not Skip or Remove):
+1. Compute the SHA-256 hash of the written file:
+   ```bash
+   shasum -a 256 "<installed-file-path>" | cut -d' ' -f1
+   ```
+2. Upsert the entry in the appropriate manifest:
+   - Skills and agents written to `~/.claude/` → `~/.claude/agent-os-manifest.json`
+   - Hooks written to `.claude/hooks/` → `.claude/agent-os-manifest.json`
+
+Manifest format (JSON; matches `skills-manifest.json` tooling discipline — no new parser):
+```json
+{
+  "schema-version": "1",
+  "last-updated": "<ISO-8601>",
+  "files": {
+    "<installed-file-path>": {
+      "base-hash": "<sha256-hex>",
+      "updated": "<ISO-8601>"
+    }
+  }
+}
+```
+
+Write rules:
+- If the manifest file does not exist: create it with the new entries.
+- If the manifest file exists: read, merge new/updated entries (upsert by path key), write back. **Never remove existing entries for files not touched this run.**
+- If the manifest file exists but is not valid JSON: skip silently and print: `Hash manifest update skipped — <path> is not valid JSON; not modified.` Do not fail Phase 5.
+- **Do not write the manifest if Phase 5 produced no writes** (all rows were skipped or removed).
+- **Write the manifest only after all Phase 5 writes complete** — mirrors the `skill-receipts.jsonl` append-at-success pattern. Per-file writes are not recorded individually mid-pass.
+
+Print on manifest update: `hash manifest updated — <N> entries recorded in <manifest-path>`
 
 **Execution receipt:** On successful completion of Phase 5 Apply, append one line to `docs/context/skill-receipts.jsonl` (create the file if absent):
 ```json
@@ -424,6 +493,8 @@ If `CLAUDE.md` is absent: print `No CLAUDE.md in working directory — skipping 
   6. `.claude/settings.json` — Phase 7 patch-if-absent of canonical fields only (`worktree.baseRef`, standard `Stop` hook); never overwrites an existing value, never touches user-owned fields.
   7. `~/.claude/hooks/agent-os-scaffold-check.sh` — Phase 8 only; **exception to the general `~/.claude/hooks/` prohibition.** This is the single authorized global hook write. Decision recorded in T78.1b (S78).
   8. `~/.claude/settings.json` `hooks.UserPromptSubmit` — Phase 8 patch-if-absent only; adds the scaffold-check hook entry when absent; never overwrites if present.
+  9. `~/.claude/agent-os-manifest.json` — global hash-manifest for skills and agents; written/updated by Phase 5 after all writes complete; upsert only (never removes entries for files not touched this run); created if absent.
+  10. `.claude/agent-os-manifest.json` — project hash-manifest for hooks; written/updated by Phase 5 after all writes complete; upsert only; created if absent.
 - **Never overwrite user-owned `.claude/settings.json` fields** (`permissions`, allow/deny lists, `mcpServers`, custom hooks). The only permitted `.claude/settings.json` writes are Phase 7 patch-if-absent of canonical fields (`worktree.baseRef`, standard `Stop` hook) and Phase 8 patch-if-absent of `hooks.UserPromptSubmit`. Never write any path not in the enumerated list above.
 - **Never delete a file the user has not explicitly approved for removal.**
 - **`CLAUDE.md` is never written by this skill** except for approved rename-reference patches (Phase 5 and Phase 11). The legacy-format `[claude.md]` row is informational only — it never triggers a write, overwrite, or modification of `CLAUDE.md`.
@@ -464,3 +535,10 @@ If `CLAUDE.md` is absent: print `No CLAUDE.md in working directory — skipping 
 - [ ] Hooks phase: no user-owned `.claude/settings.json` field (`permissions`, `mcpServers`, custom hooks) overwritten; any settings.json write was Phase 7 canonical patch-if-absent only
 - [ ] CLAUDE.md team table reconciliation ran when CLAUDE.md present; stale agent names surfaced as [claude.md] rows; user approval required before edit
 - [ ] Post-apply commit advisory shown when at least one file was changed; git commands surfaced or executed on user approval
+- [ ] Phase 3 three-way detection ran for every Outdated row; manifest read from the correct install tier (global `~/.claude/agent-os-manifest.json` for skills/agents; project `.claude/agent-os-manifest.json` for hooks)
+- [ ] Three-way conflict rows surfaced with the conflict message, base-hash/local-hash disclosure, and explicit choose-side resolution prompt ("accept" or "keep"); not blind-overwritten
+- [ ] Clean update rows (local-hash == base-hash, or no manifest entry) proceeded with standard per-file Outdated confirmation flow
+- [ ] Absent manifest treated as first-install context; no error raised; all Outdated rows on that run treated as Clean update
+- [ ] Phase 5 hash manifest written only after all writes complete (not per-file); not written if Phase 5 produced no writes
+- [ ] Manifest entries use the installed file path as key; hash is SHA-256 computed from the written file immediately after write
+- [ ] Manifest upsert preserves existing entries for files not touched this run; invalid JSON manifest skipped with advisory message

@@ -210,6 +210,14 @@ When QA (Bandit) issues APPROVED on a track, the Conductor surfaces the followin
 
 **Merge-timing guard:** If `/track-close` is not resolvable in the loaded skill scope, report: "`/track-close` not yet available in this scope — track is ready to close but cannot be written; please ensure T49.1 is merged to main and reload." Do not fire a phantom invocation.
 
+## Worktree isolation — when required vs. optional
+
+**REQUIRED:** when two or more coding tracks run concurrently (parallel agent dispatch). Each concurrent track must run in its own worktree to prevent file-level conflicts.
+
+**OPTIONAL:** when tracks are strictly sequential — each track fully merged to main before the next opens. A single branch or direct-on-main approach is safe in that case.
+
+**The trigger is concurrent dispatch, not the multi-track label.** A sprint labeled "multi-track" does not automatically require worktrees. The trigger is whether two or more coding tracks are dispatched at the same time. If dispatched sequentially with each fully merged before the next opens, worktrees are optional.
+
 ## Worktree task brief — mandatory commit step
 
 Every task brief dispatched to an agent running in worktree isolation (`isolation: worktree`) must include a final step requiring the agent to commit all changes before signing off.
@@ -224,6 +232,26 @@ Do not sign off until the commit completes successfully.
 ```
 
 An agent that edits files without committing leaves the worktree dirty. The pre-merge gate will catch it, but the result is a blocked merge requiring manual repair. The commit step in the brief prevents this at the source.
+
+## Brief construction — mandatory Sprint goal, Expected outcome, and Execution Files
+
+Every spawn brief dispatched to a specialist or task agent must open with three explicit fields before the scoped instruction:
+
+- **Sprint goal:** one sentence from the sprint plan (the sprint-level objective, not the track description).
+- **Expected outcome:** the track-level definition of done — what "complete" looks like for this specific track.
+- **Execution Files:** a structured list of file paths the agent is authorized to modify. Explicit repo-relative or absolute paths only — no globs. This is the authoritative write-scope boundary; QA Check 4 is a string match against this field, not a judgment call.
+
+Include these fields verbatim at the top of every brief:
+
+```
+Sprint goal: <one sentence from the sprint plan>
+Expected outcome: <track-level definition of done>
+Execution Files:
+- <repo-relative or absolute file path>
+- <repo-relative or absolute file path>
+```
+
+An agent that receives only a scoped instruction plans against that instruction in isolation. Sprint goal and expected outcome anchor the agent to the sprint context and prevent planning drift. Execution Files makes the write-scope explicit and machine-verifiable at QA.
 
 ## Pre-merge gate
 

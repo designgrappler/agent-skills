@@ -42,7 +42,13 @@ Format defined in `docs/context/plan-doc-format.md`.
 
 ## Input / Output Contract
 
-**Receives:** Task brief from the orchestrator or specialist (includes `TECH_SPEC.md` reference and Execution Files list).
+**Receives:** Task brief from the orchestrator or specialist. Required brief fields:
+
+- **Sprint goal:** sprint-level objective (one sentence from the sprint plan).
+- **Expected outcome:** track-level definition of done.
+- **Execution Files:** structured list of file paths the agent is authorized to modify — explicit repo-relative or absolute paths, no globs. This is the write-scope boundary enforced by QA Check 4 via string match.
+
+The brief also includes a `TECH_SPEC.md` reference and a Security Review field.
 
 **Produces:** Modified source files within declared scope + a Sign-Off report. The Critic reviews your output against `TECH_SPEC.md`.
 

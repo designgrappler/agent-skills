@@ -167,7 +167,7 @@ Run after the Bridge file sweep and before the Memory hygiene scan. This step co
       ## Sprint N Tracks ✓ — see docs/archive/plan-docs/SN.md
       ```
 
-   Replace only the single named block in each file. Stop at the first boundary (`## ` heading or `---` divider). Never delete past it — the Completed-Sprint pointer lines and prior-sprint sections below must be preserved intact.
+   Replace only the single named block in each file. Stop at the first boundary (`## ` heading or `---` divider). Never delete past it during this sub-step — the rolling-window prune in step 6 handles removal of older pointer lines.
 
 4. **Stage both files:**
    ```
@@ -175,6 +175,8 @@ Run after the Bridge file sweep and before the Memory hygiene scan. This step co
    ```
 
 5. **Log:** `Collapsed Sprint SN in plan.md and tracks.md`
+
+6. **Prune old pointer lines in `docs/context/plan.md` (rolling-window enforcement):** After collapsing, retain only the 3 most-recent `## Completed Sprint` pointer lines (S(N), S(N-1), S(N-2)); remove all older pointer lines. If the footer line `*Older sprints: see docs/archive/plan-docs/ — rolling window keeps last 3 completed sprints.*` is not already present at the end of the file, append it. Stage the result: `git add docs/context/plan.md`. Log: `Pruned plan.md to rolling window — kept S(N), S(N-1), S(N-2).`
 
 ## Memory hygiene scan
 
@@ -238,6 +240,7 @@ For each approved file:
 1. Write `STATUS: retired — <reason from Conductor>` and `Retired: YYYY-MM-DD` as the first content lines.
 2. Print confirmation: `Retired: <filename>`.
 3. Do NOT delete the file.
+4. Remove the corresponding index entry from `MEMORY.md`: locate the line that references `<filename>` (format: `- [title](<filename>) — ...`) and delete it. Stage the change with `git add <memory-dir>/MEMORY.md`. This prevents the index from containing a dangling pointer to a retired file.
 
 For declined files: log as `Retained — Conductor decision`.
 

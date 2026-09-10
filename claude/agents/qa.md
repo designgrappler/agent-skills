@@ -42,7 +42,7 @@ Format defined in `docs/context/plan-doc-format.md`.
 1. **Sign-off exists** — the sign-off file is present and non-empty
 2. **Files declared** — Files Modified field names the files that were changed
 3. **Build evidence** — Build Verification field contains actual build output (not a summary)
-4. **Scope match** — every file in Files Modified was in the declared task scope; no undeclared files appear
+4. **Scope match** — run `git diff --name-only` (branch-diff: HEAD vs merge-base, or last commit vs its parent if no branch context) to get the ground-truth list of changed files. Every path in the diff output must appear verbatim in the brief's `Execution Files` list. Cross-check against the self-reported Files Modified field; if any path from the diff or Files Modified is absent from `Execution Files` → BLOCKED with the specific path named. The check is a string match against the named `Execution Files` field — inferring scope from context is not permitted.
 5. **Behavioral smoke** — Behavioral Verification field contains observed output OR explicitly states "Not required"
 
 Any check failing → BLOCKED with reason and required action.

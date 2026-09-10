@@ -558,6 +558,7 @@ After all files are created successfully, delete both `AgentOS-Setup.md` and `ag
 `install-agent-scaffold` (install path) and `update-agent-os` (update path) govern the same distributed system from two directions. They are a **coupled pair**:
 
 - Any change that adds, removes, or renames a **canonical** field in the `.claude/settings.json` template (section 4g above), or adds/removes a scaffold-generated canonical file, MUST be reflected in `update-agent-os/SKILL.md` so the install and update paths stay in sync — and vice versa.
+- **Hash manifest files** (`~/.claude/agent-os-manifest.json` for global skills/agents; `.claude/agent-os-manifest.json` for project hooks) are written exclusively by `update-agent-os` Phase 5. This scaffold does not write to the manifest directly — global skills and agents are installed by `/update-agent-os`, which records the base hash at that time. This note satisfies the coupled-file contract acknowledgement that both files reference the manifest write targets.
 - **QA directive:** when either `install-agent-scaffold/SKILL.md` or `update-agent-os/SKILL.md` is in a track's scope, the reviewer must open the coupled file and confirm it needs no matching change. Changing one without a recorded decision on the other is a review failure.
 
 ---

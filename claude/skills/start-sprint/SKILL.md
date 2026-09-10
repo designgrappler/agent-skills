@@ -43,7 +43,17 @@ Run /triage to surface prioritized backlog candidates and open GitHub issues.
 - **Stop-and-fix** — the issue causes active drift on every sprint that runs. It heads the current sprint.
 - **Queue** — a missing improvement that does not get worse with time. It stays in the backlog.
 
-Check whether a temp plan doc already exists at `docs/temp-sprint*.md` (glob pattern). If one is found, read it and extract the sprint goal and track list from it — skip to Step 2. (A temp plan doc takes precedence over the backlog prompt; if a temp plan doc exists, surface it rather than the raw backlog.)
+Check whether a temp plan doc already exists at `docs/temp-sprint*.md` (glob pattern). If one is found, read it and extract the sprint goal and track list from it. Then surface the plan doc to Tim for review before proceeding:
+
+> "Existing temp plan doc found. Plan doc ready for review:
+> - [docs/temp-sprint\<N>-plan.md](docs/temp-sprint\<N>-plan.md)
+> Review each track's filled section, confirm scope and verification criteria, then confirm to proceed."
+
+If Tim's feedback changes scope for any track, re-fill the affected stubs before re-surfacing. Repeat until Tim confirms the full set.
+
+**Do not proceed to Step 2 until Tim confirms.**
+
+(A temp plan doc takes precedence over the backlog prompt; if a temp plan doc exists, surface it rather than the raw backlog.)
 
 If no temp plan doc exists and no backlog file exists, ask the user:
 
@@ -86,6 +96,8 @@ Immediately after the sentinel, append one Element (c) stub per Tracks table row
 
 Do not write any track content. The stub is the full orchestrator contribution below the sentinel.
 
+Each stub's `**Status:** STUB` is the required initial state — it signals "not yet planned." Domain agents are responsible for flipping it to `**Status:** FILLED` when they complete their section. The STUB/FILLED state in the plan doc is the coordination primitive; do not create a separate manifest file.
+
 Format defined in `docs/context/plan-doc-format.md`.
 
 ### Step 1b — Identify domains involved
@@ -104,14 +116,36 @@ This step repeats if Tim's feedback on sub-plans changes sprint scope — re-ide
 
 Instruct each domain agent to fill their assigned stub section in-place in `docs/temp-sprint<N>-plan.md` before executing. Each agent reads the full top section (above the sentinel), fills only their own stub (Description, Scope, Key files, Verification criteria), and flips Status from STUB to FILLED. No separate per-domain files.
 
+Every dispatch brief must include two explicit fields at the top, before the scoped instruction:
+
+```
+Sprint goal: <one sentence from the Sprint Objective>
+Expected outcome: <track-level definition of done for this agent's assigned tracks>
+```
+
+Do not dispatch a domain agent without both fields. An agent briefed with only a scoped instruction plans against that instruction in isolation and may miss sprint-level scope.
+
 Domain agents run in parallel where independent. Run sequentially where one domain's scope depends on another (e.g. strategist or pm before technical or frontend).
 
 **Gap coverage rule (hard):** If a proposed track has no matching domain agent, the sprint always blocks for Tim input — the orchestrator does not fill the gap. Surface explicitly:
 > "Track [X] has no domain agent. Define its scope manually or remove it before proceeding."
 
+**Fill method (hard):** Instruct each domain agent to fill their stub using `Edit` (targeted replace of the stub block), not `Write` of the whole plan doc. A whole-file `Write` is not section-safe and can clobber a sibling agent's section during parallel dispatch.
+
+**Post-dispatch reconciliation (mandatory before Step 1d):** After all domain agents have returned, read `docs/temp-sprint<N>-plan.md` and verify every row in the Tracks table has a corresponding `## T<N>` section that passes the complete-fill definition in `docs/context/plan-doc-format.md`: `**Status:** FILLED` AND Description, Scope, Key files, and Verification criteria all non-empty. This is a mechanical check against the Tracks table, not a judgment call.
+
+- If any track still shows `**Status:** STUB` or has any required field empty: treat it as a dispatch failure. Name the specific track ID and Owner. Re-dispatch only that domain agent. Repeat up to 3 re-dispatch attempts for the same track.
+- After 3 failed re-dispatch attempts on the same track: stop and surface to Tim:
+  > "Track T<N> (Owner: <role>) failed to fill after 3 dispatch attempts. Manual intervention required before proceeding."
+- Do not advance to Step 1d until reconciliation passes for every track in the Tracks table.
+
 ### Step 1d — Tim review gate (soft gate)
 
-Once all domain agents have filled their assigned stubs, surface the plan doc to Tim:
+**Pre-gate STUB check:** Before surfacing the plan doc to Tim, read `docs/temp-sprint<N>-plan.md` and confirm every `## T<N>` section shows `**Status:** FILLED`. If any section still shows `**Status:** STUB`, do not surface to Tim — treat it as a dispatch failure:
+> "Dispatch failure: Track T<N> (Owner: <role>) is still STUB. Re-dispatching before Tim review."
+Re-dispatch the named agent. Repeat until all tracks are FILLED. The Tim review gate does not open until all tracks show Status: FILLED.
+
+Once all tracks show Status: FILLED, surface the plan doc to Tim:
 
 > "Domain agent stubs filled. Plan doc ready for review:
 > - [docs/temp-sprint\<N>-plan.md](docs/temp-sprint\<N>-plan.md)
