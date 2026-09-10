@@ -48,7 +48,7 @@ Both commands wire up the per-project layer (`CLAUDE.md`, `docs/context/`, `.cla
 ### Tasks — one-off deliverables
 
 **Research or competitive analysis**
-State what you want to know and which sources to cover. The orchestrator routes to `researcher`, who reads `product.md` and produces a structured synthesis. QA verifies coverage and completeness before it reaches you.
+State what you want to know and which sources to cover. The orchestrator routes to `user-researcher`, who reads `product.md` and produces a structured synthesis. QA verifies coverage and completeness before it reaches you.
 
 > "Give me a competitive analysis of how Notion, Linear, and Figma handle new user onboarding."
 
@@ -209,7 +209,7 @@ Agents are role-scoped specialists the orchestrator routes work to. You do not i
 | Agent | Description |
 |---|---|
 | `orchestrator` | Reads your request, determines what kind of work it is, and routes it to the right agent. Never edits source files directly. |
-| `researcher` | Investigates questions using real sources — competitive analysis, user research, literature review. Never fabricates citations. |
+| `user-researcher` | Investigates user research questions using real sources — primary research synthesis, interviews, personas, journey maps, usability, surveys, competitive product analysis. Never fabricates citations. |
 | `qa` | Reads a completed task sign-off and issues a pass or fail verdict. Zero-write: it audits, never fixes. |
 | `writer` | Produces structured written content — documentation, briefs, articles, reports — from a complete brief. |
 | `designer` | Designs the user experience and visual layer. Works in a design tool first, then produces implementation specs for the engineering agents. |

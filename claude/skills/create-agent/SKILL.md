@@ -38,7 +38,7 @@ Reject and re-prompt if any of these fail:
 1. **Not canonical.** The role key must NOT be one of the 14 canonical roles:
 
    ```
-   backend, critic, database, designer, frontend, marketing, mobile, ops, pm, qa, researcher, strategist, technical, writer
+   backend, critic, database, designer, frontend, marketing, mobile, ops, pm, qa, strategist, technical, user-researcher, writer
    ```
 
    If it matches one of these, stop and reply:

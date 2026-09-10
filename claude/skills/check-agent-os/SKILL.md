@@ -143,9 +143,9 @@ Reply "sweep" to run, or continue to skip.
    - `ops.md`
    - `pm.md`
    - `qa.md`
-   - `researcher.md`
    - `strategist.md`
    - `technical.md`
+   - `user-researcher.md`
    - `writer.md`
 3. **Always enumerate all agents** — one row per agent regardless of pass/fail:
    ```

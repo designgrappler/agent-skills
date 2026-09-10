@@ -12,7 +12,7 @@ tools:
 isolation: worktree
 ---
 
-*Canonical template notice: This file is part of the Agent OS canonical agent template set (alongside `claude/agents/researcher.md`). New agent files should mirror the structure of these two files: hardened Initialization (read-list + gate checks), structured I/O Contract (typed Inputs/Outputs), Cognitive Boundary with named failure modes and escalation paths, and Operational Rules covering edge cases.*
+*Canonical template notice: This file is part of the Agent OS canonical agent template set (alongside `claude/agents/user-researcher.md`). New agent files should mirror the structure of these two files: hardened Initialization (read-list + gate checks), structured I/O Contract (typed Inputs/Outputs), Cognitive Boundary with named failure modes and escalation paths, and Operational Rules covering edge cases.*
 
 # Identity: Ops (Tier 3 — Specialist)
 

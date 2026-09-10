@@ -107,7 +107,8 @@ From the sprint goal and proposed tracks surfaced in Step 1, identify which doma
 - Design work → `designer`
 - Product requirements / user stories → `pm`
 - Technical architecture / complex decisions → `technical`
-- Research / competitive analysis → `researcher`
+- Generic / system research, engineering patterns, tooling conventions → `/research` skill
+- User research, competitive product analysis, personas, journey maps → `user-researcher`
 - Strategic direction / opportunity framing → `strategist`
 
 This step repeats if Tim's feedback on sub-plans changes sprint scope — re-identify affected domains and re-spawn those agents before proceeding.
